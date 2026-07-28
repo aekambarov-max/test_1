@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>LIM — фермерские продукты в Астане</title>
+  <meta name="description" content="Молоко, творог, масло, яйца и мёд напрямую от фермеров Акмолинской области. Доставка по Астане." />
+  <meta name="theme-color" content="#2f5d3a" />
+  <link rel="icon" href="/img/favicon.svg" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="/">
+        <span class="brand__mark">LIM</span>
+        <span class="brand__sub">фермерские продукты · Астана</span>
+      </a>
+      <button class="icon-btn" id="cart-open" type="button" aria-label="Открыть корзину">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-1.6 9.2a2 2 0 0 1-2 1.8H9.6a2 2 0 0 1-2-1.7L6 4H3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+        <span class="badge" id="cart-badge" hidden>0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="view-catalog" class="view">
+    <section class="hero">
+      <h1>Продукты от фермеров, которых мы знаем в лицо</h1>
+      <p>Молочка, масло, яйца и мёд из хозяйств Акмолинской области. Доставка по Астане — оплата при получении.</p>
+    </section>
+
+    <nav class="chips" id="categories" aria-label="Категории"></nav>
+
+    <div class="grid" id="products" aria-live="polite">
+      <div class="skeleton"></div><div class="skeleton"></div>
+      <div class="skeleton"></div><div class="skeleton"></div>
+    </div>
+
+    <p class="catalog-meta" id="catalog-meta"></p>
+  </main>
+
+  <!-- Чек-аут -->
+  <main id="view-checkout" class="view" hidden>
+    <button class="back" type="button" data-nav="catalog">← В каталог</button>
+    <h2 class="view__title">Оформление заказа</h2>
+
+    <form id="checkout-form" novalidate>
+      <label class="field">
+        <span class="field__label">Имя <i>*</i></span>
+        <input name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required />
+        <span class="field__error" data-error="name"></span>
+      </label>
+
+      <label class="field">
+        <span class="field__label">Телефон <i>*</i></span>
+        <input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 701 000 00 00" required />
+        <span class="field__error" data-error="phone"></span>
+      </label>
+
+      <label class="field">
+        <span class="field__label">Адрес доставки <i>*</i></span>
+        <input name="address" type="text" autocomplete="street-address" placeholder="Улица, дом, квартира, подъезд" required />
+        <span class="field__error" data-error="address"></span>
+      </label>
+
+      <label class="field">
+        <span class="field__label">Желаемое время доставки <i>*</i></span>
+        <select name="deliveryTime" required>
+          <option value="">Выберите время</option>
+          <option>Сегодня, 10:00–14:00</option>
+          <option>Сегодня, 14:00–18:00</option>
+          <option>Сегодня, 18:00–21:00</option>
+          <option>Завтра, 10:00–14:00</option>
+          <option>Завтра, 14:00–18:00</option>
+          <option>Завтра, 18:00–21:00</option>
+          <option>Договорюсь в WhatsApp</option>
+        </select>
+        <span class="field__error" data-error="deliveryTime"></span>
+      </label>
+
+      <fieldset class="field">
+        <legend class="field__label">Способ оплаты</legend>
+        <div class="radio-row">
+          <label class="radio"><input type="radio" name="paymentMethod" value="cash" checked /><span>Наличными при получении</span></label>
+          <label class="radio"><input type="radio" name="paymentMethod" value="transfer" /><span>Переводом при получении</span></label>
+        </div>
+      </fieldset>
+
+      <label class="field">
+        <span class="field__label">Комментарий</span>
+        <textarea name="comment" rows="3" placeholder="Домофон, ориентиры, пожелания к заказу"></textarea>
+      </label>
+
+      <div class="summary" id="checkout-summary"></div>
+      <p class="form-error" id="checkout-error" hidden></p>
+
+      <button class="btn btn--primary btn--full" id="submit-order" type="submit">Отправить заказ</button>
+      <p class="note">Заказ сохранится у нас, а затем откроется WhatsApp с готовым сообщением — менеджер подтвердит детали и оплату.</p>
+    </form>
+  </main>
+
+  <!-- Подтверждение -->
+  <main id="view-success" class="view" hidden>
+    <div class="success">
+      <div class="success__mark">✓</div>
+      <h2>Заказ <span id="order-number"></span> отправлен</h2>
+      <p>Мы уже получили его. Осталось подтвердить детали и оплату в WhatsApp — нажмите кнопку ниже.</p>
+      <a class="btn btn--wa btn--full" id="wa-link" href="#" target="_blank" rel="noopener">Открыть WhatsApp</a>
+      <button class="btn btn--ghost btn--full" type="button" data-nav="catalog">Вернуться в каталог</button>
+      <details class="wa-fallback">
+        <summary>WhatsApp не открылся? Скопировать текст заказа</summary>
+        <pre id="wa-text"></pre>
+        <button class="btn btn--ghost btn--full" type="button" id="copy-text">Скопировать</button>
+      </details>
+    </div>
+  </main>
+
+  <!-- Карточка товара -->
+  <div class="sheet" id="product-sheet" hidden>
+    <div class="sheet__backdrop" data-close></div>
+    <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="ps-title">
+      <button class="sheet__close" type="button" data-close aria-label="Закрыть">×</button>
+      <img class="sheet__img" id="ps-img" alt="" />
+      <div class="sheet__body">
+        <span class="tag" id="ps-stock"></span>
+        <h3 id="ps-title"></h3>
+        <p class="price" id="ps-price"></p>
+        <p class="muted" id="ps-desc"></p>
+        <div class="farmer" id="ps-farmer-box">
+          <span class="farmer__label">Фермер</span>
+          <strong id="ps-farmer"></strong>
+          <p id="ps-story"></p>
+        </div>
+      </div>
+      <div class="sheet__footer">
+        <div class="qty" id="ps-qty">
+          <button type="button" data-step="-1" aria-label="Меньше">−</button>
+          <span id="ps-qty-value">1</span>
+          <button type="button" data-step="1" aria-label="Больше">+</button>
+        </div>
+        <button class="btn btn--primary" id="ps-add" type="button">В корзину</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Корзина -->
+  <div class="sheet" id="cart-sheet" hidden>
+    <div class="sheet__backdrop" data-close></div>
+    <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <button class="sheet__close" type="button" data-close aria-label="Закрыть">×</button>
+      <div class="sheet__body">
+        <h3 id="cart-title">Корзина</h3>
+        <div id="cart-items"></div>
+        <p class="min-order" id="min-order" hidden></p>
+      </div>
+      <div class="sheet__footer sheet__footer--cart">
+        <div>
+          <span class="muted">Итого</span>
+          <strong id="cart-total">0</strong>
+        </div>
+        <button class="btn btn--primary" id="to-checkout" type="button">Оформить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Плавающая панель корзины -->
+  <div class="cartbar" id="cartbar" hidden>
+    <button type="button" id="cartbar-btn">
+      <span id="cartbar-count">0 товаров</span>
+      <strong id="cartbar-total">0</strong>
+    </button>
+  </div>
+
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

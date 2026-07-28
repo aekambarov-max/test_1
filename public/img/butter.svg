@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img">
+  <rect width="400" height="300" fill="#fbf3df"/>
+  <ellipse cx="200" cy="268" rx="118" ry="16" fill="rgba(35,32,27,0.07)"/>
+  
+  <path d="M96 176l40-42h150l32 34-38 44H128z" fill="#f5d06a"/>
+  <path d="M96 176v34l88 42 132-44v-40l-132 44z" fill="#e8bb52"/>
+  <path d="M136 134h150l32 34-134 44z" fill="#ffe9a8" opacity="0.55"/>
+  <text x="200" y="238" font-family="Helvetica,Arial,sans-serif" font-size="18" font-weight="bold" fill="#7a5a16" text-anchor="middle">МАСЛО 82,5%</text>
+</svg>

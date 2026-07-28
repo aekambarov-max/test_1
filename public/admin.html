@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LIM — админ-панель</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/img/favicon.svg" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/admin.css" />
+</head>
+<body class="admin">
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="/"><span class="brand__mark">LIM</span><span class="brand__sub">админ-панель</span></a>
+      <button class="btn btn--ghost" id="logout" type="button" hidden>Выйти</button>
+    </div>
+  </header>
+
+  <main class="admin__main">
+    <section id="auth" class="auth">
+      <h1>Вход</h1>
+      <label class="field">
+        <span class="field__label">Токен доступа</span>
+        <input id="token" type="password" autocomplete="off" placeholder="ADMIN_TOKEN" />
+      </label>
+      <p class="form-error" id="auth-error" hidden></p>
+      <button class="btn btn--primary btn--full" id="login" type="button">Войти</button>
+    </section>
+
+    <section id="workspace" hidden>
+      <nav class="tabs">
+        <button class="tab" type="button" data-tab="catalog" aria-pressed="true">Каталог</button>
+        <button class="tab" type="button" data-tab="orders" aria-pressed="false">Заказы</button>
+      </nav>
+
+      <div id="tab-catalog">
+        <div class="toolbar">
+          <button class="btn btn--primary" id="save-catalog" type="button">Сохранить каталог</button>
+          <button class="btn btn--ghost" id="add-product" type="button">+ Товар</button>
+          <button class="btn btn--ghost" id="sync-sheets" type="button">Импорт из Google Sheets</button>
+        </div>
+        <p class="status" id="catalog-status"></p>
+        <div id="product-rows"></div>
+      </div>
+
+      <div id="tab-orders" hidden>
+        <div class="toolbar">
+          <button class="btn btn--ghost" id="reload-orders" type="button">Обновить</button>
+          <button class="btn btn--ghost" id="export-orders" type="button">Скачать CSV</button>
+        </div>
+        <p class="status" id="orders-status"></p>
+        <div id="order-rows"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/admin.js" type="module"></script>
+</body>
+</html>

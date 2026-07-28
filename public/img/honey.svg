@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img">
+  <rect width="400" height="300" fill="#fdf3dd"/>
+  <ellipse cx="200" cy="268" rx="118" ry="16" fill="rgba(35,32,27,0.07)"/>
+  
+  <rect x="140" y="96" width="120" height="20" rx="8" fill="#7a4f10"/>
+  <path d="M146 116h108v112a28 28 0 0 1-28 28h-52a28 28 0 0 1-28-28z" fill="#ffffff" stroke="#e3d9c8" stroke-width="3"/>
+  <path d="M150 140h100v88a26 26 0 0 1-26 26h-48a26 26 0 0 1-26-26z" fill="#e0a01e"/>
+  <rect x="160" y="176" width="80" height="40" rx="8" fill="#fffdf7" opacity="0.92"/>
+  <text x="200" y="202" font-family="Helvetica,Arial,sans-serif" font-size="16" font-weight="bold" fill="#8a5a12" text-anchor="middle">РАЗНОТРАВЬЕ</text>
+</svg>

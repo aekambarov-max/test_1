@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img">
+  <rect width="400" height="300" fill="#f2ece1"/>
+  <ellipse cx="200" cy="268" rx="118" ry="16" fill="rgba(35,32,27,0.07)"/>
+  
+  <circle cx="200" cy="168" r="58" fill="#e3d9c8"/>
+  <text x="200" y="180" font-family="Helvetica,Arial,sans-serif" font-size="34" font-weight="bold" fill="#8d8375" text-anchor="middle">LIM</text>
+</svg>

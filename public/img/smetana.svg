@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img">
+  <rect width="400" height="300" fill="#f1f2ee"/>
+  <ellipse cx="200" cy="268" rx="118" ry="16" fill="rgba(35,32,27,0.07)"/>
+  
+  <path d="M132 118h136l-13 122a18 18 0 0 1-18 16h-74a18 18 0 0 1-18-16z" fill="#ffffff" stroke="#e3d9c8" stroke-width="3"/>
+  <path d="M139 168h122l-9 72a18 18 0 0 1-18 16h-68a18 18 0 0 1-18-16z" fill="#fdfdfb"/>
+  <rect x="122" y="98" width="156" height="26" rx="12" fill="#7fa8c9"/>
+  <text x="200" y="222" font-family="Helvetica,Arial,sans-serif" font-size="18" font-weight="bold" fill="#5a5348" text-anchor="middle">СМЕТАНА</text>
+</svg>
